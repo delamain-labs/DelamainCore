@@ -91,6 +91,49 @@ result.mapError { AppError.network($0) }
 let count = result.map(\.itemCount).recover { _ in 0 }
 ```
 
+### String Extensions
+
+```swift
+// Blank checking (whitespace-aware)
+"   ".isBlank     // true
+"hello".isNotBlank // true
+
+// Trimming
+"  hello  ".trimmed // "hello"
+
+// Nil conversions
+"".nilIfEmpty    // nil
+"   ".nilIfBlank // nil
+
+// Truncation
+"hello world".truncated(to: 8)              // "hello..."
+"hello world".truncated(to: 8, trailing: "…") // "hello w…"
+```
+
+### Date Extensions
+
+```swift
+// Start/end of day
+let midnight = date.startOfDay()
+let endOfDay = date.endOfDay()
+
+// Day comparisons
+date.isToday
+date.isYesterday
+date.isTomorrow
+date.isSameDay(as: otherDate)
+
+// Adding time
+date.adding(days: 5)
+date.adding(weeks: 2)
+date.adding(months: 1)
+
+// Range checks
+date.isBefore(otherDate)
+date.isAfter(otherDate)
+date.isBetween(startDate, and: endDate)
+```
+
 ### Comparable Extensions
 
 ```swift
